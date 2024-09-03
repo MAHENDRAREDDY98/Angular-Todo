@@ -1,42 +1,40 @@
 <div class="p-6 mx-auto">
-    <!-- Pass the editingIndex to the todoform component -->
-    <app-todoform [editingIndex]="editingIndex"></app-todoform>
-    
-    <ul class="space-y-4 mt-6">
-      <li
-        class="flex max-w-xl items-center justify-between p-4 border rounded-lg m-auto"
-        *ngFor="let todo of todos; index as i"
-      >
-        <span class="flex-1" [ngStyle]="{'text-decoration': todo.completed ? 'line-through' : 'none'}">
-          {{ todo.task }}
-        </span>
+  <app-todoform [editingIndex]="editingIndex"></app-todoform>
   
-        <div class="flex space-x-2">
-          <button
-            type="button"
-            class="px-3 py-1 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-            (click)="markTaskCompletion(i)" [disabled]="todo.completed" [class]="todo.completed?'opacity-50':''"
-          >
-            &#10003; Complete
-          </button>
-  
-          <button
-            type="button"
-            class="px-3 py-1 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            (click)="editTaskDesc(i)"
-          >
-            ✏️ Edit
-          </button>
-  
-          <button
-            type="button"
-            class="px-3 py-1 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-            (click)="removeTask(i)"
-          >
-            🗑️ Remove
-          </button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  
+  <ul class="space-y-4 mt-6">
+    <li
+      class="flex max-w-xl items-center justify-between p-4 border rounded-lg m-auto"
+      *ngFor="let todo of todos; index as i"
+    >
+      <span class="flex-1" [ngStyle]="{'text-decoration': todo.completed ? 'line-through' : 'none'}">
+        {{ todo.task }}
+      </span>
+
+      <div class="flex space-x-2">
+        <button
+          type="button"
+          class="px-3 py-1 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+          (click)="markTaskCompletion(i)" [disabled]="todo.completed" [class]="todo.completed?'opacity-50':''"
+        >
+          &#10003; <span class="hidden sm:inline-block">Complete</span>
+        </button>
+
+        <button
+          type="button"
+          class="px-3 py-1 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          (click)="editTaskDesc(i)"
+        >
+          ✏️ <span class="hidden sm:inline-block">Edit</span>
+        </button>
+
+        <button
+          type="button"
+          class="px-3 py-1 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+          (click)="removeTask(i)"
+        >
+          🗑️ <span class="hidden sm:inline-block">Remove</span>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

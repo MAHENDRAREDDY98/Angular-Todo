@@ -13,13 +13,17 @@ export class TodoformComponent implements OnChanges {
   constructor(private todoService: TodoService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['editingIndex'] && this.editingIndex !== null) {
+    if (changes['editingIndex']) {
+      if (this.editingIndex !== null) {
         const todoList = this.todoService.getTodoList();
         if (this.editingIndex >= 0 && this.editingIndex < todoList.length) {
           this.taskInput = todoList[this.editingIndex].task;
         }
-      } 
+      } else {
+        this.taskInput = '';
+      }
     }
+  }
 
   onSubmit() {
     if (this.editingIndex !== null) {

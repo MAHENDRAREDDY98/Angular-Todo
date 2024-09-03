@@ -13,20 +13,25 @@ export class TodolistComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
+    this.loadTodos();
+  }
+
+  loadTodos() {
     this.todos = this.todoService.getTodoList();
   }
 
   removeTask(index: number) {
     this.todoService.removeTask(index);
-    this.todos = this.todoService.getTodoList();
+    this.loadTodos();
   }
 
   editTaskDesc(index: number) {
     this.editingIndex = index;
+    this.loadTodos();
   }
 
   markTaskCompletion(index: number) {
     this.todoService.toggleTaskCompletion(index);
-    this.todos = this.todoService.getTodoList();
+    this.loadTodos(); // Reload todos after completion
   }
 }
